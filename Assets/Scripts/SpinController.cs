@@ -9,8 +9,8 @@ public class SpinController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public GameObject spin;
     public bool buttonPressed;
     public int number;
-
-    // Start is called before the first frame update
+    public AudioSource audioSourceSpin;
+    public AudioClip spinMusic;
 
     public void OnPointerDown(PointerEventData eventData){
         buttonPressed = true;
@@ -32,6 +32,11 @@ public class SpinController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if(buttonPressed == true){
             number = Random.Range(1,20);
             this.speed = 10000*number;
+
+            AudioClip spinWheelMusic = spinMusic;
+            audioSourceSpin.clip = spinWheelMusic;
+            audioSourceSpin.Play();
+
         }
 
         spin.transform.Rotate(0,0, this.speed);
